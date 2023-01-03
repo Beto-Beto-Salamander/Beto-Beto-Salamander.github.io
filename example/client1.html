@@ -11,6 +11,18 @@
     <label for="value">Value</label><br>
     <input type="text" id="value" name="value">
     <input type="submit" value="Submit" onClick="onSave()">
+    <br>
+    <br>
+    <br>
+    <label for="key-get">Key to get</label><br>
+    <input type="text" id="key-get" name="key-get">
+    <input type="get" value="Get" onClick="onGet()">
+    <br>
+    <br>
+    <br>
+    <label for="key-remove">Key to remove</label><br>
+    <input type="text" id="key-remove" name="key-remove">
+    <input type="remove" value="remove" onClick="onRemove()">
   </form>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
   <script type="text/javascript" src="../lib/client.js"></script>
@@ -33,6 +45,30 @@
           console.log(err);
         });
     }
+
+    function onGet() {
+
+      storage.onConnect()
+        .then(function(){
+          return storage.get(document.getElementById("key-get").value);
+        }).then(function (res) {
+          console.log(res); 
+        })['catch'](function (err) {
+          console.log(err);
+        });
+    }
+
+    function onRemove() {
+
+storage.onConnect()
+  .then(function(){
+    return storage.del(document.getElementById("key-remove").value);
+  }).then(function (res) {
+    console.log(res); 
+  })['catch'](function (err) {
+    console.log(err);
+  });
+}
 
   </script>
 </body>

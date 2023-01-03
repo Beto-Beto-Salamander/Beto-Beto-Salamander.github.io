@@ -15,11 +15,10 @@
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
   <script type="text/javascript" src="../lib/client.js"></script>
   <script type="text/javascript">
-    function onSave() {
-      var storage = new CrossStorageClient('https://cd-hub.vercel.app/cross-storage', {
+    var storage = new CrossStorageClient('https://cd-hub.vercel.app/cross-storage', {
         timeout: 5000,
       });
-
+    function onSave() {
       var setKeys = function () {
         return storage.set(document.getElementById("key-name").value, document.getElementById("value").value);
       };
@@ -27,7 +26,7 @@
       storage.onConnect()
         .then(setKeys)
         .then(function () {
-          return storage.get('key1');
+          
         }).then(function (res) {
           console.log(res); // 'foo'
         })['catch'](function (err) {

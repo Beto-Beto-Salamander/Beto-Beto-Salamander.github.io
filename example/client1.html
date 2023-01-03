@@ -5,7 +5,7 @@
 </head>
 
 <body>
-  <form>
+  <form onsubmit="return false">
     <label for="key-name">Key Name</label><br>
     <input type="text" id="key-name" name="key-name"><br>
     <label for="value">Value</label><br>
@@ -22,14 +22,14 @@
     <br>
     <label for="key-remove">Key to remove</label><br>
     <input type="text" id="key-remove" name="key-remove">
-    <input type="submit" value="remove" onClick="onRemove()">
+    <input type="submit" value="Remove" onClick="onRemove()">
   </form>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
   <script type="text/javascript" src="../lib/client.js"></script>
   <script type="text/javascript">
     var storage = new CrossStorageClient('https://cd-hub.vercel.app/cross-storage', {
-        timeout: 5000,
-      });
+      timeout: 5000,
+    });
     function onSave() {
       var setKeys = function () {
         return storage.set(document.getElementById("key-name").value, document.getElementById("value").value);
@@ -38,9 +38,9 @@
       storage.onConnect()
         .then(setKeys)
         .then(function () {
-          
+
         }).then(function (res) {
-          console.log(res); // 'foo'
+          console.log(res);
         })['catch'](function (err) {
           console.log(err);
         });
@@ -49,26 +49,29 @@
     function onGet() {
 
       storage.onConnect()
-        .then(function(){
+        .then(function () {
           return storage.get(document.getElementById("key-get").value);
         }).then(function (res) {
-          console.log(res); 
+          console.log(res);
         })['catch'](function (err) {
           console.log(err);
         });
+
     }
 
     function onRemove() {
 
-storage.onConnect()
-  .then(function(){
-    return storage.del(document.getElementById("key-remove").value);
-  }).then(function (res) {
-    console.log(res); 
-  })['catch'](function (err) {
-    console.log(err);
-  });
-}
+      storage.onConnect()
+        .then(function () {
+          return storage.del(document.getElementById("key-remove").value);
+        }).then(function (res) {
+          console.log(res);
+        })['catch'](function (err) {
+          console.log(err);
+        });
+
+      
+    }
 
   </script>
 </body>

@@ -3,9 +3,11 @@
   <title>Local Storage</title>
 </head>
 <body>
-  <script src="https://cd-hub.vercel.app/js/cross-domain-storage.js"></script> 
+  <script src="https://cd-hub.vercel.app/js/custom-local-storage.js"></script> 
   <script type="text/javascript">
-
+    CustomLocalStorage.set("1", "ini value");
+    var val = CustomLocalStorage.getByKeys(["1"]);
+    console.log(val);
   </script>
 </body>
 </html>

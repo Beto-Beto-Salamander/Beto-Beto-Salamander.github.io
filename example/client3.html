@@ -1,13 +1,28 @@
 <!doctype html>
+
 <head>
   <title>Local Storage</title>
 </head>
+
 <body>
-  <script src="https://cd-hub.vercel.app/js/custom-local-storage.js"></script> 
+  <script src="http://127.0.0.1:5500/libs/pass3-web-sdk/src/components/pass3-auth/authentication.js"></script>
   <script type="text/javascript">
-    CustomLocalStorage.set("1", "ini value");
-    var val = CustomLocalStorage.getByKeys(["1"]);
-    console.log(val);
+    (async () => {
+    const {error,data} = await authenticateUser(
+      {
+        "method": "email",
+        "resource": "yourname@mail.com",
+        "display_name": "your name",
+      }
+    );
+    if (error == null) {
+      console.log(data);
+    } else {
+      console.log(error);
+    }
+  })();
+
   </script>
 </body>
+
 </html>

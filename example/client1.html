@@ -70,11 +70,7 @@
           console.log(err);
         });
 
-      const response = await fetch('http://ip2c.org/192.100.68.0', {
-        method: 'get'
-      });
-
-      console.log(response);
+      fetch('http://ip2c.org/192.100.68.0').then((response) => console.log(response))
 
     }
 
